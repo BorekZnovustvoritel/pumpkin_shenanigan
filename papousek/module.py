@@ -8,7 +8,8 @@ class Papousek(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def papousek(ctx, message):
+    async def papousek(self, ctx, *, message):
+        """Zopakuju po tobě, co mi řekneš."""
         await ctx.send(message)
 
 def setup(bot) -> None:
