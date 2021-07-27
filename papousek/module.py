@@ -7,9 +7,9 @@ class Papousek(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.command()
+    async def papousek(ctx, message):
+        await ctx.send(message)
+
 def setup(bot) -> None:
     bot.add_cog(Papousek(bot))
-
-@commands.command()
-async def papousek(ctx, message):
-    await ctx.send(message)
