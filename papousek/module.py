@@ -11,11 +11,10 @@ class Papousek(commands.Cog):
     @commands.command()
     async def papousek(self, ctx, *, message):
         """Zopakuju po tobě, co mi řekneš."""
-        if message is not None:
-            await ctx.send(message)
-        else:
+        if message is None:
             await ctx.send("\*Zvuky papouška - jak dělá papoušek? Ó kruci, ó doprčic, já to nevím.\*")
-
+        else:
+            await ctx.send(message)
 
     @commands.command()
     async def hodiny(self, ctx):
