@@ -9,7 +9,7 @@ class Testovani(commands.Cog):
 
     @commands.command()
     async def groups(self, ctx):
-        await ctx.send(str(ctx.guild.by_category())
+        await ctx.send(str(ctx.guild.by_category()))
 
     @commands.command()
     async def channels(self, ctx):
