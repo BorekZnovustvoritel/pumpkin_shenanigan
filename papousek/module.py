@@ -20,7 +20,11 @@ class Papousek(commands.Cog):
     @commands.command()
     async def hodiny(self, ctx):
         """Jaký je čas?"""
-        await ctx.send("Momentálně je "+str(time.localtime()))
+        now = time.localtime()
+        hours = now[3]
+        minutes = now[4]
+        seconds = now[5]
+        await ctx.send("Momentálně je %d h %d min %d s" % (hours, minutes, seconds))
 
 def setup(bot) -> None:
     bot.add_cog(Papousek(bot))
