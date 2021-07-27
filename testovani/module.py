@@ -15,7 +15,7 @@ class Testovani(commands.Cog):
         for category in categories:
             categoryName = category[0]
             if categoryName not in categoryNames:
-                categoryNames.append(categoryName)
+                categoryNames.append(str(categoryName))
             #if header['name'] not in categoryNames:
             #    categoryNames.append(header['name'])
             #rooms = category[1]
