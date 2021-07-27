@@ -9,7 +9,7 @@ class Papousek(commands.Cog):
         self.bot = bot
 
     @commands.command()
-    async def papousek(self, ctx, *, message):
+    async def papousek(self, ctx, *, message = None):
         """Zopakuju po tobě, co mi řekneš."""
         if message is None:
             message = "\*Zvuky papouška - jak dělá papoušek? Ó kruci, ó doprčic, já to nevím.\*"
