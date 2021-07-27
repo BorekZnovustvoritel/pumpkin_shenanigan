@@ -25,7 +25,7 @@ class Testovani(commands.Cog):
             #for room in rooms:
             #    if room[1] not in names:
             #        names.append(room[1])
-        await ctx.send(categoryNames, channelNames)
+        await ctx.send(str(categoryNames, channelNames))
 
     #@commands.command()
     #async def channels(self, ctx):
