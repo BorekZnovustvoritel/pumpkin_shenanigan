@@ -11,18 +11,21 @@ class Testovani(commands.Cog):
     async def groups(self, ctx):
         categories = ctx.guild.by_category()
         categoryNames = []
-        names = []
+        channelNames = []
         for category in categories:
             categoryName = category[0]
             if categoryName not in categoryNames:
                 categoryNames.append(str(categoryName))
+            channels = category[1]
+            for channel in channels:
+                channelNames.append(str(channel))
             #if header['name'] not in categoryNames:
             #    categoryNames.append(header['name'])
             #rooms = category[1]
             #for room in rooms:
             #    if room[1] not in names:
             #        names.append(room[1])
-        await ctx.send(categoryNames)
+        await ctx.send(categoryNames, channelNames)
 
     #@commands.command()
     #async def channels(self, ctx):
