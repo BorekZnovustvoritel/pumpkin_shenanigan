@@ -13,12 +13,12 @@ class Testovani(commands.Cog):
         categoryNames = []
         names = []
         for category in categories:
-            if category['name'] not in categoryNames:
-                categoryNames.append(category['name'])
+            if category[1] not in categoryNames:
+                categoryNames.append(category[1])
             rooms = category[4]
             for room in rooms:
-                if room['name'] not in names:
-                    names.append(room['names'])
+                if room[1] not in names:
+                    names.append(room[1])
         await ctx.send(str(categories)+str(names))
 
     #@commands.command()
