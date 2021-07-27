@@ -9,11 +9,11 @@ class Testovani(commands.Cog):
 
     @commands.command()
     async def groups(self, ctx):
-        await ctx.send(str(ctx.guild.by_category()))
+        await ctx.send(str(ctx.guild.by_category().getName()))
 
     @commands.command()
     async def channels(self, ctx):
-        await ctx.send(str(ctx.guild.fetch_channels()))
+        await ctx.send(ctx.guild.fetch_channels().getName())
 
 def setup(bot) -> None:
     bot.add_cog(Testovani(bot))
