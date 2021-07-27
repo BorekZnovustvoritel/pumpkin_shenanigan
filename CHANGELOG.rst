@@ -1,0 +1,6 @@
+CHANGELOG
+=========
+
+test
+----
+Less goo
