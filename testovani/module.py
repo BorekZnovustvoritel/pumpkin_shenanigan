@@ -13,14 +13,16 @@ class Testovani(commands.Cog):
         categoryNames = []
         names = []
         for category in categories:
-            header = category[0]
+            categoryName = category[0]
+            if categoryName not in categoryNames:
+                categoryNames.append(categoryName)
             #if header['name'] not in categoryNames:
             #    categoryNames.append(header['name'])
             #rooms = category[1]
             #for room in rooms:
             #    if room[1] not in names:
             #        names.append(room[1])
-        await ctx.send(header)
+        await ctx.send(categoryNames)
 
     #@commands.command()
     #async def channels(self, ctx):
