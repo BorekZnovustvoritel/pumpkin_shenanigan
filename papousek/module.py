@@ -1,4 +1,5 @@
 import discord
+import time
 from discord.ext import commands
 
 from core import acl, text, logging
@@ -10,7 +11,16 @@ class Papousek(commands.Cog):
     @commands.command()
     async def papousek(self, ctx, *, message):
         """Zopakuju po tobě, co mi řekneš."""
-        await ctx.send(message)
+        if message:
+            await ctx.send(message)
+        else:
+            await ctx.send("\*Zvuky papouška - jak dělá papoušek? Ó kruci, ó doprčic, já to nevím.\*")
+
+
+    @commands.command()
+    async def hodiny(self, ctx):
+        """Kolik je hodin?"""
+        await ctx.send("Momentálně je "+str(time.localtime().now()))
 
 def setup(bot) -> None:
     bot.add_cog(Papousek(bot))
