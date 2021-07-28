@@ -11,7 +11,7 @@ class Testovani(commands.Cog):
 
     @commands.command()
     async def rawGr(self, ctx):
-        await ctx.send(ctx.guild.by_category)
+        await ctx.send(ctx.guild.by_category())
 
 
 
