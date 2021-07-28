@@ -71,7 +71,7 @@ class Testovani(commands.Cog):
             for subject in json_data:
                 if subject['institute'] == institute:
                     instituteSubjects.append(subject)
-
+        print(institutes)
 
             category = None
             categoryFound = False
