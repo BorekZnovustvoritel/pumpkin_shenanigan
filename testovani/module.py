@@ -66,6 +66,12 @@ class Testovani(commands.Cog):
 
 
         for institute in institutes:
+            instituteSubjects = []
+            for subject in json_data:
+                if subject['institute'] == institute:
+                    instituteSubjects.append(subject)
+
+
             category = None
             categoryFound = False
             for category in categories:
@@ -80,7 +86,7 @@ class Testovani(commands.Cog):
             for channel in channels:
                 chNames.append(str(channel.name).lower())
                 chDescr.append(str(channel.topic).lower())
-            for subject in institute:
+            for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
                 if sAbbr in chNames:
                     await ctx.send("Channel %s found!" % sAbbr)
