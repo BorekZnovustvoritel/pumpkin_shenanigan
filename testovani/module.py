@@ -65,10 +65,10 @@ class Testovani(commands.Cog):
             for category in categories:
                 if str(category[0]).lower() == institute.name.lower():
                     break
-            for subject
+            #for subject
 
-            for subject in institute:
-                if subject not in
+            #for subject in institute:
+            #    if subject not in
 
 
 
