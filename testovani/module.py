@@ -78,11 +78,11 @@ class Testovani(commands.Cog):
                 chDescr.append(str(channel.topic).lower())
             for subject in institute:
                 sAbbr = subject['abbreviation'].lower()
-                if sAbbr not in chNames:
-                    await ctx.send("Channel %s not found!" % sAbbr)
+                if sAbbr in chNames:
+                    await ctx.send("Channel %s found!" % sAbbr)
                 sName = subject['name'].lower()
-                if sName not in chDescr:
-                    await ctx.send("Channel description %s not found!" % sName)
+                if sName in chDescr:
+                    await ctx.send("Channel description %s found!" % sName)
 
 
 
