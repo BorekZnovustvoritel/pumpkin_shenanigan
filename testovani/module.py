@@ -69,6 +69,7 @@ class Testovani(commands.Cog):
 
 
         for institute in institutes:
+            correctChannels = 0
             await ctx.send("Institute: **%s**" % institute)
             instituteSubjects = []
             for subject in json_data:
@@ -97,7 +98,6 @@ class Testovani(commands.Cog):
 
             #print(chNames)
             for subject in instituteSubjects:
-                correctChannels = 0
                 sAbbr = subject['abbreviation'].lower()
                 correctAbbr = False
                 for chName in chNames:
@@ -120,7 +120,7 @@ class Testovani(commands.Cog):
                 if not correctName:
                     await ctx.send("Channel %s has a faulty description" % sAbbr)
             await ctx.send("Correct channels for institute **%s**: %d" % (institute, correctChannels))
-            if sAbbr:
+            if chNamesCp:
                 rooms = ""
                 for redundantRoom in chNamesCp:
                     rooms += (redundantRoom+"\n")
