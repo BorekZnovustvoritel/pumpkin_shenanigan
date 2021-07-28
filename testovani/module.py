@@ -20,11 +20,12 @@ class Testovani(commands.Cog):
         for category in categories:
             channels = category[1]
             for channel in channels:
-                if channel.type == VoiceChannel:
-                    continue
-                else:
-                    ans.append(channel.topic)
-        await ctx.send(ans)
+                #if channel.type == VoiceChannel:
+                #    continue
+                #else:
+                #    ans.append(channel.topic)
+                await ctx.send(channel.type)
+        #await ctx.send(ans)
     @commands.command()
     async def groups(self, ctx):
 
