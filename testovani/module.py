@@ -77,7 +77,7 @@ class Testovani(commands.Cog):
             category = None
             categoryFound = False
             for category in categories:
-                if str(category[0]).lower() in institutes:
+                if str(category[0]).lower() == institute:
                     categoryFound = True
                     break
             if not categoryFound:
