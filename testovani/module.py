@@ -52,7 +52,7 @@ class Testovani(commands.Cog):
         institutes = []
         for subject in json_data:
             if subject['institute'] not in institutes:
-                institutes.append(subject['institute'])
+                institutes.append((subject['institute']).replace(":",""))
         #print(institutes)
         categories = ctx.guild.by_category()
 
