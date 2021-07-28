@@ -73,7 +73,7 @@ class Testovani(commands.Cog):
                 if subject['institute'] == institute:
                     instituteSubjects.append(subject)
 
-
+            await ctx.send(instituteSubjects)
             category = None
             categoryFound = False
             for category in categories:
@@ -85,7 +85,7 @@ class Testovani(commands.Cog):
                 continue
 
             channels = category[1]
-            print("Channels: "+str(channels))
+            #print("Channels: "+str(channels))
             chNames = []
             chDescrs = []
             for channel in channels:
