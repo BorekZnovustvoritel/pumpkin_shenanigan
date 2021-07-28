@@ -2,6 +2,7 @@ import discord
 import tempfile
 import json
 from discord.ext import commands
+from discord import ChannelType
 
 from core import acl, text, logging
 
@@ -20,10 +21,10 @@ class Testovani(commands.Cog):
         for category in categories:
             channels = category[1]
             for channel in channels:
-                if channel.type == voice:
-                    continue
-                else:
+                if channel.type == ChannelType.text:
                     ans.append(channel.topic)
+                else:
+                    continue
                 #await ctx.send(channel.type)
         await ctx.send(ans)
 
