@@ -81,14 +81,15 @@ class Testovani(commands.Cog):
                     categoryFound = True
                     break
             if not categoryFound:
-                await ctx.send("Category %s not found on this server." % str(category).lower())
+                await ctx.send("Category %s not found on this server." % str(category[0]).lower())
             channels = category[1]
+            print("Channels: "+str(channels))
             chNames = []
             chDescr = []
             for channel in channels:
                 chNames.append(str(channel.name).lower())
                 chDescr.append(str(channel.topic).lower())
-            print(chNames)
+            #print(chNames)
             for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
                 if sAbbr in chNames:
