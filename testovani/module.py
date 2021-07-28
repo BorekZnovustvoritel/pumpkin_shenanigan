@@ -53,7 +53,7 @@ class Testovani(commands.Cog):
         for subject in json_data:
             if subject['institute'] not in institutes:
                 institutes.append(subject['institute'])
-        print(institutes)
+        #print(institutes)
         categories = ctx.guild.by_category()
 
         #categoriesToCompare = []
@@ -88,6 +88,7 @@ class Testovani(commands.Cog):
             for channel in channels:
                 chNames.append(str(channel.name).lower())
                 chDescr.append(str(channel.topic).lower())
+            print(chDescr)
             for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
                 if sAbbr in chNames:
@@ -95,6 +96,7 @@ class Testovani(commands.Cog):
                 sName = subject['name'].lower()
                 if sName in chDescr:
                     await ctx.send("Channel description %s found." % sName)
+        await ctx.send("Done!")
 
 
 
