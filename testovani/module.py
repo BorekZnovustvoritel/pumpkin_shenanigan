@@ -31,9 +31,7 @@ class Testovani(commands.Cog):
 
     @commands.command()
     async def groups(self, ctx):
-
-
-
+        """Check subjects' text channels with a json file."""
         if len(ctx.message.attachments) != 1:
             await ctx.send("Only 1 file allowed as an attachment.")
             return
@@ -55,19 +53,9 @@ class Testovani(commands.Cog):
         for subject in json_data:
             if subject['institute'].lower() not in institutes:
                 institutes.append(subject['institute'].lower())
-        #print(institutes)
         categories = ctx.guild.by_category()
 
-        #categoriesToCompare = []
-        #categoryNames = []
-        #channelNames = []
-        #for category in categories:
-        #    categoryName = str(category[0]).lower()
-            #if categoryName not in categoryNames:
-                #if categoryName in institutes:
-                #    categoriesToCompare.append(category)
-
-
+        # loading institutes
         for institute in institutes:
             correctChannels = 0
             await ctx.send("Institute: **%s**" % institute)
@@ -75,76 +63,55 @@ class Testovani(commands.Cog):
             for subject in json_data:
                 if subject['institute'].lower() == institute:
                     instituteSubjects.append(subject)
-
+            # looking for institutes' channel categories
             category = None
             categoryFound = False
             for category in categories:
-                if str(category[0]).lower() == institute:
+                if str(category[0]).lower() == institute: # category[0] is it's header, [1] are channels
                     categoryFound = True
                     break
             if not categoryFound:
                 await ctx.send("Category %s not found on this server." % institute)
                 continue
-
+            # fetching channel names and descriptions
             channels = category[1]
-            #print("Channels: "+str(channels))
             chNames = []
             chDescrs = []
             for channel in channels:
                 chNames.append(str(channel.name).lower())
                 chDescrs.append(str(channel.topic).lower())
-            chNamesCp = copy(chNames)
-
-
-            #print(chNames)
+            chNamesCp = copy(chNames) # this will hold redundant channels
+            # comparing subject abbreviations and names to the .json file
+            subjectIndex = 0
             for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
                 correctAbbr = False
+                # searching for a correct channel by name
                 for chName in chNames:
                     if chName == sAbbr:
                         correctAbbr = True
                         chNamesCp.remove(sAbbr)
+                        chNames.index(str(sAbbr))
+                        print(subjectIndex)
                         #await ctx.send("Channel %s found." % sAbbr)
                         break
                 if not correctAbbr:
                     await ctx.send("Channel %s not found." % sAbbr)
                     continue
                 sName = subject['name'].lower()
-                correctName = False
-                for chDescr in chDescrs:
-                    if chDescr == sName:
-                        correctName = True
-                        #await ctx.send("Channel description %s found." % sName)
-                        correctChannels += 1
-                        break
-                if not correctName:
+                #checking if the subject's name matches it's abrreviation
+                if chDescrs[subjectIndex] == sName:
+                    #await ctx.send("Channel description %s found." % sName)
+                    correctChannels += 1
+                else:
                     await ctx.send("Channel %s has a faulty description" % sAbbr)
             await ctx.send("Correct channels for institute **%s**: %d" % (institute, correctChannels))
-            if chNamesCp:
+            if len(chNamesCp) != 0:
                 rooms = ""
                 for redundantRoom in chNamesCp:
                     rooms += (redundantRoom+"\n")
                 await ctx.send("Redundant channels for %s:\n%s" % (institute, rooms))
         await ctx.send("Done!")
-
-
-
-
-        #    channels = category[1]
-        #    for channel in channels:
-        #        channelNames.append(str(channel).lower())
-        #
-        #
-        #for institute in institutes:
-        #    names = []
-        #    abbrs = []
-        #    for subject in institute:
-        #        if subject['name'] not in names:
-        #            names.append(subject['name'].lower())
-        #        if subject['abbreviation'] not in abbrs:
-        #            abbrs.append(subject['abbreviation'].lower())
-        # loading data from guild
-        #await ctx.send(str(categoryNames)+str(channelNames))
 
 def setup(bot) -> None:
     bot.add_cog(Testovani(bot))
