@@ -35,7 +35,7 @@ class Testovani(commands.Cog):
         if len(ctx.message.attachments) != 1:
             await ctx.send("Only 1 file allowed as an attachment.")
             return
-        if not ctx.message.attachments[0].filename.lower.endswith("json"):
+        if not ctx.message.attachments[0].filename.lower().endswith("json"):
             await ctx.send("Only .json files allowed as an attachment.")
             return
         # download the file
