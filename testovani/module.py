@@ -83,6 +83,7 @@ class Testovani(commands.Cog):
             print("Category: "+str(category))
             if not categoryFound:
                 await ctx.send("Category %s not found on this server." % institute)
+                continue
             channels = category[1]
             #print("Channels: "+str(channels))
             chNames = []
