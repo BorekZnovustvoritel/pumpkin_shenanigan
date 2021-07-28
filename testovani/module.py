@@ -86,18 +86,30 @@ class Testovani(commands.Cog):
             channels = category[1]
             print("Channels: "+str(channels))
             chNames = []
-            chDescr = []
+            chDescrs = []
             for channel in channels:
                 chNames.append(str(channel.name).lower())
-                chDescr.append(str(channel.topic).lower())
+                chDescrs.append(str(channel.topic).lower())
             #print(chNames)
             for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
-                if sAbbr in chNames:
-                    await ctx.send("Channel %s found." % sAbbr)
+                correctAbbr = False
+                for chName in chNames:
+                    if chName == sAbbr:
+                        correctAbbr = True
+                        await ctx.send("Channel %s found." % sAbbr)
+                        break
+                if not correctAbbr:
+                    await ctx.send("Channel %s not found." % sAbbr)
                 sName = subject['name'].lower()
-                if sName in chDescr:
-                    await ctx.send("Channel description %s found." % sName)
+                correctName = False
+                for chDescr in chDescrs:
+                    if chDescr == sName:
+                        correctName = True
+                        await ctx.send("Channel description %s found." % sName)
+                        break
+                if not correctName:
+                    await ctx.send("Channel description %s not found." % sName)
         await ctx.send("Done!")
 
 
