@@ -55,17 +55,18 @@ class Testovani(commands.Cog):
                 institutes.append(subject['institute'])
 
         categories = ctx.guild.by_category()
-        categoriesToCompare = []
-        categoryNames = []
-        channelNames = []
-        for category in categories:
-            categoryName = str(category[0]).lower()
-            if categoryName not in categoryNames:
-                if categoryName in institutes:
-                    categoriesToCompare.append(category)
+        #categoriesToCompare = []
+        #categoryNames = []
+        #channelNames = []
+        #for category in categories:
+        #    categoryName = str(category[0]).lower()
+            #if categoryName not in categoryNames:
+                #if categoryName in institutes:
+                #    categoriesToCompare.append(category)
 
 
         for institute in institutes:
+            ctx.send("Institute %s:" % institute)
             instituteSubjects = []
             for subject in json_data:
                 if subject['institute'] == institute:
@@ -76,10 +77,10 @@ class Testovani(commands.Cog):
             categoryFound = False
             for category in categories:
                 if str(category[0]).lower() in institutes:
-                    instituteFound = True
+                    categoryFound = True
                     break
             if not categoryFound:
-                ctx.send("Category %s not found" % str(category[0]).lower())
+                ctx.send("Category %s not found on this server." % str(category[0]).lower())
             channels = category[1]
             chNames = []
             chDescr = []
@@ -89,10 +90,10 @@ class Testovani(commands.Cog):
             for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
                 if sAbbr in chNames:
-                    await ctx.send("Channel %s found!" % sAbbr)
+                    await ctx.send("Channel %s found." % sAbbr)
                 sName = subject['name'].lower()
                 if sName in chDescr:
-                    await ctx.send("Channel description %s found!" % sName)
+                    await ctx.send("Channel description %s found." % sName)
 
 
 
