@@ -25,7 +25,6 @@ class Testovani(commands.Cog):
                     ans.append(channel.topic)
                 else:
                     continue
-                #await ctx.send(channel.type)
         await ctx.send(ans)
 
     @commands.command()
@@ -71,26 +70,36 @@ class Testovani(commands.Cog):
             for category in categories:
                 if str(category[0]).lower() == institute.name.lower():
                     break
-            #for subject
-
-            #for subject in institute:
-            #    if subject not in
-
-
-
             channels = category[1]
+            chNames = []
+            chDescr = []
             for channel in channels:
-                channelNames.append(str(channel).lower())
-
-
-        for institute in institutes:
-            names = []
-            abbrs = []
+                chNames.append(str(channel.name).lower())
+                chDescr.append(str(channel.topic).lower())
             for subject in institute:
-                if subject['name'] not in names:
-                    names.append(subject['name'].lower())
-                if subject['abbreviation'] not in abbrs:
-                    abbrs.append(subject['abbreviation'].lower())
+                sAbbr = subject['abbreviation'].lower()
+                if sAbbr not in chNames:
+                    await ctx.send("Channel %s not found!" % sAbbr)
+                sName = subject['name'].lower()
+                if sName not in chDescr:
+                    await ctx.send("Channel description %s not found!" % sName)
+
+
+
+
+        #    channels = category[1]
+        #    for channel in channels:
+        #        channelNames.append(str(channel).lower())
+        #
+        #
+        #for institute in institutes:
+        #    names = []
+        #    abbrs = []
+        #    for subject in institute:
+        #        if subject['name'] not in names:
+        #            names.append(subject['name'].lower())
+        #        if subject['abbreviation'] not in abbrs:
+        #            abbrs.append(subject['abbreviation'].lower())
         # loading data from guild
         await ctx.send(str(categoryNames)+str(channelNames))
 
