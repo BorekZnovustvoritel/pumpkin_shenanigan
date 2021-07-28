@@ -68,7 +68,7 @@ class Testovani(commands.Cog):
         for institute in institutes:
             category = None
             for category in categories:
-                if str(category[0]).lower() == institute.name.lower():
+                if str(category[0]).lower() == (institute[0])['name'].lower():
                     break
             channels = category[1]
             chNames = []
