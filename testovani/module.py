@@ -51,7 +51,7 @@ class Testovani(commands.Cog):
         # loading data from .json file
         institutes = []
         for subject in json_data:
-            if subject['institute'] not in institutes:
+            if subject['institute'].lower() not in institutes:
                 institutes.append(subject['institute'].lower())
         #print(institutes)
         categories = ctx.guild.by_category()
