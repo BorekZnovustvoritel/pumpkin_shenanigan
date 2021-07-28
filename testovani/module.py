@@ -52,7 +52,7 @@ class Testovani(commands.Cog):
         institutes = []
         for subject in json_data:
             if subject['institute'] not in institutes:
-                institutes.append(subject)
+                institutes.append(subject['institute'])
 
         categories = ctx.guild.by_category()
         categoriesToCompare = []
@@ -67,9 +67,13 @@ class Testovani(commands.Cog):
 
         for institute in institutes:
             category = None
+            categoryFound = False
             for category in categories:
-                if str(category[0]).lower() == (institute[0])['name'].lower():
+                if str(category[0]).lower() in institutes:
+                    instituteFound = True
                     break
+            if not categoryFound:
+                ctx.send("Category %s not found" % str(category[0]).lower())
             channels = category[1]
             chNames = []
             chDescr = []
