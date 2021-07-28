@@ -112,7 +112,7 @@ class Testovani(commands.Cog):
         #        if subject['abbreviation'] not in abbrs:
         #            abbrs.append(subject['abbreviation'].lower())
         # loading data from guild
-        await ctx.send(str(categoryNames)+str(channelNames))
+        #await ctx.send(str(categoryNames)+str(channelNames))
 
 def setup(bot) -> None:
     bot.add_cog(Testovani(bot))
