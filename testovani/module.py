@@ -13,8 +13,15 @@ class Testovani(commands.Cog):
     async def rawGr(self, ctx):
         await ctx.send(ctx.guild.by_category())
 
-
-
+    @commands.command()
+    async def descr(self, ctx):
+        ans = []
+        categories = ctx.guild.by_category()
+        for category in categories:
+            channels = category[1]
+            for channel in channels:
+                ans.append(channel.topic)
+        await ctx.send(ans)
     @commands.command()
     async def groups(self, ctx):
 
@@ -43,13 +50,28 @@ class Testovani(commands.Cog):
                 institutes.append(subject)
 
         categories = ctx.guild.by_category()
+        categoriesToCompare = []
         categoryNames = []
         channelNames = []
         for category in categories:
             categoryName = str(category[0]).lower()
             if categoryName not in categoryNames:
                 if categoryName in institutes:
-                    categoryNames.append(categoryName)
+                    categoriesToCompare.append(category)
+
+
+        for institute in institutes:
+            category = None
+            for category in categories:
+                if str(category[0]).lower() == institute.name.lower():
+                    break
+            for subject
+
+            for subject in institute:
+                if subject not in
+
+
+
             channels = category[1]
             for channel in channels:
                 channelNames.append(str(channel).lower())
