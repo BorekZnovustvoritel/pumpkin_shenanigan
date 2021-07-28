@@ -1,3 +1,5 @@
+from copy import copy
+
 import discord
 import tempfile
 import json
@@ -67,7 +69,7 @@ class Testovani(commands.Cog):
 
 
         for institute in institutes:
-            await ctx.send("Institute: %s" % institute)
+            await ctx.send("Institute: *%s*" % institute)
             instituteSubjects = []
             for subject in json_data:
                 if subject['institute'].lower() == institute:
@@ -90,6 +92,9 @@ class Testovani(commands.Cog):
             for channel in channels:
                 chNames.append(str(channel.name).lower())
                 chDescrs.append(str(channel.topic).lower())
+            chNamesCp = copy(chNames)
+
+
             #print(chNames)
             for subject in instituteSubjects:
                 sAbbr = subject['abbreviation'].lower()
@@ -97,19 +102,26 @@ class Testovani(commands.Cog):
                 for chName in chNames:
                     if chName == sAbbr:
                         correctAbbr = True
-                        await ctx.send("Channel %s found." % sAbbr)
+                        chNamesCp.remove(sAbbr)
+                        #await ctx.send("Channel %s found." % sAbbr)
                         break
                 if not correctAbbr:
                     await ctx.send("Channel %s not found." % sAbbr)
+                    continue
                 sName = subject['name'].lower()
                 correctName = False
                 for chDescr in chDescrs:
                     if chDescr == sName:
                         correctName = True
-                        await ctx.send("Channel description %s found." % sName)
+                        #await ctx.send("Channel description %s found." % sName)
                         break
                 if not correctName:
-                    await ctx.send("Channel description %s not found." % sName)
+                    await ctx.send("Channel %s has a faulty description" % sAbbr)
+            if sAbbr != []:
+                rooms = ""
+                for redundantRoom in chNamesCp:
+                    rooms += (redundantRoom+"\n")
+                await ctx.send("Redundant channels for %s:\n%s" % (institute, rooms))
         await ctx.send("Done!")
 
 
