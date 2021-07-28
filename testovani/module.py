@@ -67,7 +67,7 @@ class Testovani(commands.Cog):
 
 
         for institute in institutes:
-            print("Institute: %s" % institute)
+            await ctx.send("Institute: %s" % institute)
             instituteSubjects = []
             for subject in json_data:
                 if subject['institute'] == institute:
@@ -83,6 +83,7 @@ class Testovani(commands.Cog):
             if not categoryFound:
                 await ctx.send("Category %s not found on this server." % institute)
                 continue
+
             channels = category[1]
             print("Channels: "+str(channels))
             chNames = []
