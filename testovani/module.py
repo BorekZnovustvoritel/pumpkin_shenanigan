@@ -20,7 +20,7 @@ class Testovani(commands.Cog):
         for category in categories:
             channels = category[1]
             for channel in channels:
-                if channel.type == 'voice':
+                if channel.type == voice:
                     continue
                 else:
                     ans.append(channel.topic)
