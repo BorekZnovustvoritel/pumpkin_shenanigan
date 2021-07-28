@@ -70,10 +70,9 @@ class Testovani(commands.Cog):
             await ctx.send("Institute: %s" % institute)
             instituteSubjects = []
             for subject in json_data:
-                if subject['institute'].lower() == institute.lower():
+                if subject['institute'].lower() == institute:
                     instituteSubjects.append(subject)
 
-            await ctx.send(instituteSubjects)
             category = None
             categoryFound = False
             for category in categories:
