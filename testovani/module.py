@@ -53,8 +53,9 @@ class Testovani(commands.Cog):
         for subject in json_data:
             if subject['institute'] not in institutes:
                 institutes.append(subject['institute'])
-
+        print(institutes)
         categories = ctx.guild.by_category()
+
         #categoriesToCompare = []
         #categoryNames = []
         #channelNames = []
@@ -71,7 +72,7 @@ class Testovani(commands.Cog):
             for subject in json_data:
                 if subject['institute'] == institute:
                     instituteSubjects.append(subject)
-        print(institutes)
+
 
             category = None
             categoryFound = False
