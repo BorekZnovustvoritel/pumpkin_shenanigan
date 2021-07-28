@@ -67,7 +67,7 @@ class Testovani(commands.Cog):
 
 
         for institute in institutes:
-            ctx.send("Institute %s:" % institute)
+            await ctx.send("Institute %s:" % institute)
             instituteSubjects = []
             for subject in json_data:
                 if subject['institute'] == institute:
