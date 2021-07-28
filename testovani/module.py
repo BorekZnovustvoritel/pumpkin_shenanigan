@@ -80,12 +80,11 @@ class Testovani(commands.Cog):
                 if str(category[0]).lower() == institute:
                     categoryFound = True
                     break
-            print("Category: "+str(category[0]))
             if not categoryFound:
                 await ctx.send("Category %s not found on this server." % institute)
                 continue
             channels = category[1]
-            #print("Channels: "+str(channels))
+            print("Channels: "+str(channels))
             chNames = []
             chDescr = []
             for channel in channels:
