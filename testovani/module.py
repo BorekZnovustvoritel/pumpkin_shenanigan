@@ -120,7 +120,7 @@ class Testovani(commands.Cog):
                 if not correctName:
                     await ctx.send("Channel %s has a faulty description" % sAbbr)
             await ctx.send("Correct channels for institute **%s**: %d" % (institute, correctChannels))
-            if sAbbr != []:
+            if sAbbr:
                 rooms = ""
                 for redundantRoom in chNamesCp:
                     rooms += (redundantRoom+"\n")
